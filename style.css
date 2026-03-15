@@ -1,0 +1,467 @@
+/* 全体設定 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Shippori Mincho', serif; color: #333; overflow-x: hidden; }
+/* ヘッダー：スクロールすると置いていかれる(absolute) */
+header {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+.tournament-logo {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-weight: 900;
+    color: #fff;
+    font-size: 1.8rem;
+    text-shadow: 3px 3px 0px #e42d97;
+    letter-spacing: 0.1em;
+}
+nav ul { display: flex; list-style: none; align-items: center; }
+nav ul li { margin-left: 30px; }
+nav ul li a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: bold; }
+/* ヒーローセクション */
+.hero {
+    position: relative;
+    width: 100%; height: 100vh;
+    background: #000; overflow: hidden;
+}
+/* メインテキスト */
+.hero-content {
+    position: absolute; top: 45%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; z-index: 10; width: 100%;
+}
+.main-title {
+    font-family: 'M PLUS 1p', sans-serif;
+    font-size: 6rem; color: #fff;
+    text-shadow: 5px 5px 0px #e42d97, 10px 10px 0px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+}
+.sub-quote { color: white; font-size: 1.2rem; letter-spacing: 0.5em; margin-bottom: 30px; }
+/* 光るエントリーボタン */
+.btn-shiny {
+    position: relative; display: inline-block;
+    padding: 18px 60px; background: #e42d97;
+    color: white; text-decoration: none; font-weight: bold;
+    border-radius: 50px; overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 85, 0, 0.4);
+    transition: 0.3s;
+}
+.btn-shiny::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shinyMove 3s infinite;
+}
+@keyframes shinyMove {
+    0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; }
+}
+.btn-shiny:hover { transform: scale(1.05); }
+/* 下部曲線SVG */
+.mask-bottom {
+    position: absolute; bottom: -1px; left: 0; width: 100%; line-height: 0; z-index: 5;
+}
+.mask-bottom svg { width: 100%; height: 100px; }
+/* 揺れる矢印 */
+.scroll-arrow {
+    position: absolute; bottom: 140px; left: 50%; transform: translateX(-50%); z-index: 15;
+}
+.scroll-arrow span {
+    display: block; width: 15px; height: 15px;
+    border-bottom: 2px solid #fff; border-right: 2px solid #fff;
+    transform: rotate(45deg); margin: -5px;
+    animation: arrowDown 2s infinite;
+}
+.scroll-arrow span:nth-child(2) { animation-delay: 0.2s; }
+.scroll-arrow span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes arrowDown {
+    0% { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+}
+/* ルールセクション */
+.next-section { padding: 100px 50px; text-align: center; background: white; }
+.section-title { font-size: 2.5rem; letter-spacing: 0.3em; margin-bottom: 60px; }
+.rules-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.rule-card {
+    flex: 1; min-width: 250px; padding: 50px; border: 1px solid #eee;
+    transition: 0.4s;
+}
+.rule-card:hover { transform: translateY(-15px); border-color: #e42d97; }
+/* --- 大会名（ロゴ・メインタイトル） --- */
+.tournament-logo, .main-title {
+    /* フォントを筆文字系に置き換え */
+    font-family: 'Klee One', cursive;
+    font-weight: 600;
+    color: #fff;
+    
+    /* 影の設定：オレンジの立体的な影 */
+    text-shadow: 
+        3px 3px 0px #e42d97, 
+        6px 6px 0px rgba(0,0,0,0.2);
+    
+    letter-spacing: 0.1em;
+}
+/* ヘッダーのロゴサイズ調整 */
+.tournament-logo {
+    font-size: 1.8rem;
+}
+/* リストのスタイル調整 */
+#schedule ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 5px;
+}
+/* シード権などの強調テキスト */
+#schedule .highlight {
+    color: #e42d97;
+}
+/* 小さな注釈 */
+#schedule small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.8rem;
+}
+footer {
+    background-color: #fff; /* 背景は白にして清潔感を */
+    border-top: 4px solid #e42d97; /* 上部にピンクのライン */
+    padding: 60px 20px 20px;
+    color: #333;
+}
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.footer-brand {
+    flex: 1;
+    min-width: 200px;
+}
+.footer-brand .footer-logo {
+    font-family: 'Klee One', cursive;
+    font-size: 1.8rem;
+    color: #e42d97; /* ロゴをピンクに */
+    margin-bottom: 10px;
+}
+.footer-nav-groups {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.nav-group h4 {
+    font-size: 0.8rem;
+    color: #e42d97; /* 見出しをピンクに */
+    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+}
+.nav-group ul {
+    list-style: none;
+    padding: 0;
+}
+.nav-group ul li {
+    margin-bottom: 10px;
+}
+.nav-group ul li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+.nav-group ul li a:hover {
+    color: #e42d97;
+    text-decoration: underline;
+}
+.footer-bottom {
+    max-width: 1000px;
+    margin: 40px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+.footer-bottom p {
+    font-size: 0.7rem;
+    color: #999;
+    margin-bottom: 10px;
+}
+.footer-bottom small {
+    color: #666;
+    font-size: 0.75rem;
+}
+/* スマホ対応 */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-nav-groups {
+        justify-content: center;
+    }
+    .nav-group {
+        min-width: 120px;
+    }
+}
+/* スマホ・タブレット向けの調整 */
+@media (max-width: 768px) {
+    /* メインタイトルを小さくして画面に収める */
+    .main-title {
+        font-size: 3rem; /* 6remから3remに */
+        text-shadow: 3px 3px 0px #e42d97;
+    }
+    /* サブコピーの文字サイズ調整 */
+    .sub-quote {
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+    }
+    /* ヘッダーの余白を狭くする */
+    header {
+        padding: 20px;
+    }
+    .tournament-logo {
+        font-size: 1.2rem;
+    }
+    /* ナビゲーションを少し小さく */
+    nav ul li {
+        margin-left: 15px;
+    }
+    nav ul li a {
+        font-size: 0.7rem;
+    }
+    /* ルールカードを縦並びに近くする */
+    .rule-card {
+        padding: 30px 20px;
+    }
+    /* セクションのタイトル */
+    .section-title {
+        font-size: 1.8rem;
+    }
+}
+/* スマホ・タブレット向けの調整（追記） */
+@media (max-width: 768px) {
+    /* セクション全体の余白を調整 */
+    .next-section {
+        padding: 60px 20px; /* 左右の余白を少し詰める */
+    }
+    /* グリッド（カードの親玉）のズレを直す */
+    .rules-grid {
+        display: block; /* 横並びから縦並びに完全に切り替え */
+        width: 100%;
+    }
+    /* カード自体の設定 */
+    .rule-card {
+        width: 100%;       /* 幅をいっぱいにする */
+        margin-bottom: 20px; /* 下に隙間を作る */
+        padding: 30px 15px;  /* 左右のpaddingを狭くして文字領域を確保 */
+        box-sizing: border-box; /* paddingを含めた幅計算にする */
+    }
+    /* タイトルの位置を強制的に真ん中に */
+    .section-title {
+        text-align: center;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+// 2. 矢印クリックでスムーズスクロール
+document.getElementById('js-scroll-trigger').addEventListener('click', () => {
+    document.getElementById('rules').scrollIntoView({ behavior: 'smooth' });
+});
+// 3. すべてのナビゲーションリンクにスムーズスクロールを適用
+document.querySelectorAll('nav a, .hero-content a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+});
+/* ヒーローセクション：画像を1枚に固定 */
+.hero {
+    position: relative;
+    width: 100%; height: 100vh;
+    background: #000; overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* 必要に応じて明るさを調整 */
+    filter: brightness(0.7); 
+}
+
+/* 大会概要のグリッド配置 */
+.info-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-container {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid #ccc; /* 終わった方はグレー */
+}
+
+.active-info {
+    border-top: 5px solid #e42d97;
+    box-shadow: 0 10px 30px rgba(228, 45, 151, 0.15);
+}
+
+.info-title {
+    font-family: 'Klee One', cursive;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.info-item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.info-label {
+    width: 80px;
+    font-weight: bold;
+    color: #e42d97;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.info-value {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* スマホ対応：さらに余白を調整 */
+@media (max-width: 768px) {
+    .info-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-container {
+        width: 100%;
+    }
+}
+/* ステージカードのレイアウト */
+.stage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.stage-card {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 12px;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.stage-card:hover {
+    transform: translateY(-5px);
+    border-color: #e42d97;
+    box-shadow: 0 5px 15px rgba(228, 45, 151, 0.1);
+}
+
+.stage-img {
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #ddd; 
+}
+
+.stage-card p {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+/* スマホでは2列 */
+@media (max-width: 480px) {
+    .stage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .stage-img {
+        height: 80px;
+    }
+    .stage-card p {
+        font-size: 0.75rem;
+    }
+}
+
+
+
+
+
+
+
+
+/* --- PAST WINNERS 画像の修正 --- */
+
+/* 画像を囲む枠の設定 */
+.winner-img-container {
+    width: 100%;
+    height: 220px;       /* 枠の高さ。お好みで調整してください */
+    overflow: hidden;    /* はみ出た部分をカット */
+    border-radius: 12px; /* 角を少し丸くする */
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+/* 画像自体の設定 */
+.winner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* 比率を保ったまま枠いっぱいに広げる（重要！） */
+    object-position: center; /* 中央を基準に表示 */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* ホバー時に少しズームする演出（任意） */
+.winner-card:hover .winner-img {
+    transform: scale(1.05);
+}
+
+/* スマホ対応：画像の高さを少し抑える */
+@media (max-width: 768px) {
+    .winner-img-container {
+        height: 180px;
+    }
+}
